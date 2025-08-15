@@ -1,0 +1,46 @@
+export const physicsQuestions = [
+  { question: "Unit of force is?", options: ["Newton", "Joule", "Pascal", "Watt"], answer: "Newton" },
+  { question: "Speed of light in vacuum is approximately?", options: ["3×10^8 m/s", "5×10^6 m/s", "1×10^7 m/s", "None"], answer: "3×10^8 m/s" },
+  { question: "SI unit of electric charge is?", options: ["Coulomb", "Ampere", "Volt", "Ohm"], answer: "Coulomb" },
+  { question: "Acceleration due to gravity at Earth's surface (g) ≈?", options: ["9.8 m/s²", "10 m/s²", "9 m/s²", "9.81 m/s²"], answer: "9.8 m/s²" },
+  { question: "Work done is zero when motion is perpendicular to force — this exemplifies which work type?", options: ["Zero work", "Positive work", "Negative work", "Variable work"], answer: "Zero work" },
+  { question: "Which law states F ∝ q1q2/r²?", options: ["Coulomb’s law", "Newton’s law", "Ohm’s law", "Faraday’s law"], answer: "Coulomb’s law" },
+  { question: "Magnetic field inside a long straight solenoid is proportional to?", options: ["Current", "Number of turns", "Both", "Neither"], answer: "Both" },
+  { question: "The unit of magnetic flux is?", options: ["Weber", "Tesla", "Ampere", "Henry"], answer: "Weber" },
+  { question: "Capacitance is greatest in which configuration?", options: ["Parallel plate", "Spherical", "Cylindrical", "None"], answer: "Parallel plate" },
+  { question: "Relation between capacitance C and area A, distance d?", options: ["C ∝ A/d", "C ∝ d/A", "C ∝ A·d", "C ∝ 1/(Ad)"], answer: "C ∝ A/d" },
+  { question: "Unit of resistance is?", options: ["Ohm", "Siemens", "Volt", "Ampere"], answer: "Ohm" },
+  { question: "Ohm’s law states V = I·R. If R doubles, what happens to current?", options: ["Halves", "Doubles", "Same", "Zero"], answer: "Halves" },
+  { question: "Formula for kinetic energy (KE) of mass m moving at speed v?", options: ["½ mv²", "mv²", "m²v", "½ m²v²"], answer: "½ mv²" },
+  { question: "Which device converts chemical energy to electrical energy?", options: ["Battery", "Capacitor", "Inductor", "Resistor"], answer: "Battery" },
+  { question: "Unit of power is?", options: ["Watt", "Joule", "Newton", "Pascal"], answer: "Watt" },
+  { question: "Which phenomenon demonstrates wave nature of light?", options: ["Diffraction", "Photoelectric effect", "Compton effect", "Blackbody radiation"], answer: "Diffraction" },
+  { question: "In photoelectric effect, stopping potential is independent of?", options: ["Intensity", "Frequency", "Material", "Work function"], answer: "Intensity" },
+  { question: "Young’s modulus measures what property?", options: ["Elasticity", "Plasticity", "Viscosity", "Toughness"], answer: "Elasticity" },
+  { question: "Which ray is deflected least by electric and magnetic fields?", options: ["Gamma", "Beta", "Alpha", "X-ray"], answer: "Gamma" },
+  { question: "Refractive index (n) is ratio of ?", options: ["c/v", "v/c", "λ/λ₀", "Amplitude/A₀"], answer: "c/v" }
+];
+
+export const chemistryQuestions = [
+  { question: "Chemical formula of water?", options: ["H₂O", "CO₂", "O₂", "NaCl"], answer: "H₂O" },
+  { question: "pH of pure water is?", options: ["7", "14", "0", "10"], answer: "7" },
+  { question: "Unit of concentration molarity is?", options: ["mol/L", "mol/dm³", "mol/kg", "mol/m³"], answer: "mol/L" },
+  { question: "Empirical formula gives?", options: ["Simplest ratio", "Actual number", "Molecular mass", "Structural detail"], answer: "Simplest ratio" },
+  { question: "pH < 7 indicates?", options: ["Acidic", "Basic", "Neutral", "None"], answer: "Acidic" },
+  { question: "pH > 7 indicates?", options: ["Basic", "Acidic", "Neutral", "None"], answer: "Basic" },
+  { question: "Which element is halogen?", options: ["Chlorine", "Oxygen", "Nitrogen", "Helium"], answer: "Chlorine" },
+  { question: "Chemical formula of table salt?", options: ["NaCl", "KCl", "NaF", "CaCl₂"], answer: "NaCl" },
+  { question: "Which compound is an alcohol?", options: ["CH₃OH", "CH₄", "C₂H₆", "CH₃COOH"], answer: "CH₃OH" },
+  { question: "Which is a ketone?", options: ["CH₃COCH₃", "CH₃OH", "CH₄", "CH₃COOH"], answer: "CH₃COCH₃" },
+  { question: "Acid–base neutralization produces?", options: ["Salt + Water", "Salt + Hydrogen", "Gas", "Heat only"], answer: "Salt + Water" },
+  { question: "Electrolysis of water produces?", options: ["Hydrogen + Oxygen", "Hydrogen only", "Oxygen only", "Chlorine"], answer: "Hydrogen + Oxygen" },
+  { question: "Which is polymer of glucose?", options: ["Starch", "Sucrose", "Glucose", "Fructose"], answer: "Starch" },
+  { question: "Biomolecule example: enzymes are?", options: ["Proteins", "Carbohydrates", "Lipids", "Nucleic acids"], answer: "Proteins" },
+  { question: "Which compound is a carboxylic acid?", options: ["CH₃COOH", "CH₃OH", "CH₂O", "CH₄"], answer: "CH₃COOH" },
+  { question: "Which is a biomolecule: DNA or Salt?", options: ["DNA", "Salt", "H₂O", "O₂"], answer: "DNA" },
+  { question: "Functional group in alcohol is?", options: ["–OH", "–COOH", "–NH₂", "–CHO"], answer: "–OH" },
+  { question: "Which is alkene?", options: ["C₂H₄", "C₂H₆", "C₂H₂", "CH₄"], answer: "C₂H₄" },
+  { question: "Which is polymer?", options: ["Polythene", "Methane", "Ethane", "Water"], answer: "Polythene" },
+  { question: "Green Chemistry emphasizes?", options: ["Eco-friendly reactions", "Toxic reagents", "High waste", "None"], answer: "Eco-friendly reactions" }
+];
+
