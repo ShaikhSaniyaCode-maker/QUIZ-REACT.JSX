@@ -17,7 +17,7 @@ export default function Login() {
 
     if (validUser) {
       localStorage.setItem("loggedInUser", username);
-      navigate("/subjects"); // redirect to subject selection page
+navigate("/SubjectSelection");
     } else {
       alert("Invalid username or password");
     }

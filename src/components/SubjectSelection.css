@@ -1,67 +1,78 @@
+/* Background */
 .subject-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f4f0ff;
   font-family: "Poppins", sans-serif;
-  /* background: linear-gradient(120deg, #6a11cb, #2575fc); */
 }
 
+/* Card */
 .subject-card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2rem 3rem;
+  background: white;
+  padding: 2rem;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
   text-align: center;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  animation: popIn 0.5s ease;
-    background: linear-gradient(120deg, #6a11cb, #2575fc);
-
+  color: #333;
+  width: 370px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 90px; /* space for wave */
 }
 
+/* Heading */
 .subject-card h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+  color: #6a11cb;
 }
 
 .subtitle {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  color: #777;
 }
 
+/* Buttons */
 .button-group {
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 
 .subject-btn {
-  padding: 12px 25px;
+  flex: 1;
+  margin: 0 8px;
+  padding: 12px;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  color: #fff;
+  color: white;
+  transition: 0.3s ease;
 }
 
 .subject-btn.physics {
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
 }
 
 .subject-btn.chemistry {
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  background: linear-gradient(120deg, #ff4b2b, #ff416c);
 }
 
 .subject-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+  opacity: 0.9;
 }
 
-@keyframes popIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+/* Waves */
+.waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 1;
 }

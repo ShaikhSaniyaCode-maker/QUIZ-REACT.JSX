@@ -12,7 +12,20 @@ export default function Signup({ onSignup }) {
   const handleSignup = (e) => {
     e.preventDefault();
     if (username && phone && password) {
+      // Phone number validation
+      if (!/^\d{10}$/.test(phone)) {
+        alert("⚠️ Please enter a valid 10-digit phone number!");
+        return;
+      }
+
       const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Duplicate phone check
+      if (users.find((u) => u.phone === phone)) {
+        alert("⚠️ Phone number already registered!");
+        return;
+      }
+
       users.push({ username, phone, password });
       localStorage.setItem("users", JSON.stringify(users));
       alert("🎉 Signup successful! Please login to continue.");

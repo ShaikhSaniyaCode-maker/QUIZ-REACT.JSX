@@ -22,7 +22,7 @@ import Leaderboard from "./components/Leaderboard";
 import { Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import SubjectSelection from "./components/SubjectSelection";
+import SubjectSelection from "./components/SubjectSelection.jsx";
 import Quiz from "./components/Quiz";
 
 
@@ -32,7 +32,7 @@ export default function App() {
       <Route path="/" element={<Signup />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/subjects" element={<SubjectSelection />} />
+<Route path="/SubjectSelection" element={<SubjectSelection />} />
       <Route path="/quiz/:subject" element={<Quiz />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
     </Routes>
