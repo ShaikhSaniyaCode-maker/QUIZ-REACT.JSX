@@ -68,11 +68,13 @@
   display: flex;
   align-items: center;
   padding: 12px 15px;
+  min-height: 50px; /* bigger tap area */
   border: 1px solid #ccc;
   border-radius: 12px;
   cursor: pointer;
   user-select: none;
   transition: 0.2s;
+  font-size: 1rem;
 }
 
 .option-label.selected {
@@ -87,6 +89,10 @@
 .option-label input {
   margin-right: 10px;
   pointer-events: none; /* ensure taps register on label */
+}
+
+.option-label span.option-text {
+  flex: 1; /* text fills full width */
 }
 
 /* Buttons */
@@ -104,6 +110,7 @@
   border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .prev-btn {
@@ -137,6 +144,7 @@
 @media (max-width: 480px) {
   .quiz-card {
     padding: 1.5rem 1rem 3rem 1rem;
+    max-height: 85vh;
   }
 
   .quiz-card h2 {
@@ -155,39 +163,14 @@
   .navigation-buttons {
     flex-direction: column;
   }
-}
-/* Progress Bar */
-.progress-bar {
-  width: 100%;
-  background: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 8px;
-  margin-bottom: 20px;
-  position: relative;
-}
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(120deg, #6a11cb, #2575fc);
-  width: 0%;
-  border-radius: 10px;
-  transition: width 0.3s ease;
-}
-
-/* Waves at Bottom */
-.waves svg {
-  width: 100%;
-  height: 80px;
-}
-
-@media (max-width: 480px) {
   .waves svg {
     height: 60px; /* smaller height for mobile */
   }
+}
 
-  .quiz-card {
-    max-height: 85vh;
-    padding-bottom: 3rem;
-  }
+/* Waves SVG */
+.waves svg {
+  width: 100%;
+  height: 80px;
 }

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { physicsHardQuestions, chemistryHardQuestions } from "../Question.jsx";
 import "./Quiz.css";
 
-// Helper: shuffle and pick random questions
 function getRandomQuestions(allQuestions, count = 10) {
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
@@ -19,10 +18,7 @@ export default function Quiz() {
   const [startTime, setStartTime] = useState(null);
 
   useEffect(() => {
-    let allQuestions = [];
-    if (subject === "physics") allQuestions = physicsHardQuestions;
-    else if (subject === "chemistry") allQuestions = chemistryHardQuestions;
-
+    let allQuestions = subject === "physics" ? physicsHardQuestions : chemistryHardQuestions;
     const randomQuestions = getRandomQuestions(allQuestions);
     setQuestions(randomQuestions);
     setStartTime(Date.now());
@@ -31,8 +27,7 @@ export default function Quiz() {
   const currentQuestion = questions[currentIndex];
 
   useEffect(() => {
-    if (answers[currentIndex] !== undefined) setSelectedOption(answers[currentIndex]);
-    else setSelectedOption(null);
+    setSelectedOption(answers[currentIndex] || null);
   }, [currentIndex, answers]);
 
   if (!currentQuestion) return <div>Loading...</div>;
@@ -49,39 +44,9 @@ export default function Quiz() {
 
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      setSelectedOption(updatedAnswers[currentIndex + 1] || null);
     } else {
-      const endTime = Date.now();
-      const timeTakenMinutes = Number(((endTime - startTime) / 60000).toFixed(2));
-
-      let score = 0;
-      let wrongQuestions = [];
-
-      questions.forEach((q, index) => {
-        if (updatedAnswers[index] === q.answer) score += 2;
-        else
-          wrongQuestions.push({
-            question: q.question,
-            yourAnswer: updatedAnswers[index] || "Not Attempted",
-            correctAnswer: q.answer,
-          });
-      });
-
-      const resultData = {
-        name: localStorage.getItem("loggedInUser") || "Guest",
-        subject,
-        score,
-        totalMarks: questions.length * 2,
-        timeTakenMinutes,
-        date: new Date().toLocaleDateString("en-GB"),
-        wrongQuestions,
-      };
-
-      localStorage.setItem("lastScore", score);
-
-      const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-      leaderboard.push(resultData);
-      localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-      navigate("/leaderboard");
+      finishQuiz(updatedAnswers);
     }
   };
 
@@ -89,9 +54,41 @@ export default function Quiz() {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-const progress = questions.length
-  ? ((currentIndex + 1) / questions.length) * 100
-  : 0;
+  const finishQuiz = (finalAnswers) => {
+    const endTime = Date.now();
+    const timeTakenMinutes = Number(((endTime - startTime) / 60000).toFixed(2));
+    let score = 0;
+    let wrongQuestions = [];
+
+    questions.forEach((q, index) => {
+      if (finalAnswers[index] === q.answer) score += 2;
+      else
+        wrongQuestions.push({
+          question: q.question,
+          yourAnswer: finalAnswers[index] || "Not Attempted",
+          correctAnswer: q.answer,
+        });
+    });
+
+    const resultData = {
+      name: localStorage.getItem("loggedInUser") || "Guest",
+      subject,
+      score,
+      totalMarks: questions.length * 2,
+      timeTakenMinutes,
+      date: new Date().toLocaleDateString("en-GB"),
+      wrongQuestions,
+    };
+
+    localStorage.setItem("lastScore", score);
+    const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    leaderboard.push(resultData);
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+    navigate("/leaderboard");
+  };
+
+  const progress = questions.length ? ((currentIndex + 1) / questions.length) * 100 : 0;
+
   return (
     <div className="quiz-container">
       <div className="quiz-card">
@@ -121,8 +118,7 @@ const progress = questions.length
                 name="option"
                 value={opt}
                 checked={selectedOption === opt}
-                onChange={(e) => setSelectedOption(e.target.value)}
-                style={{ pointerEvents: "none" }} // input won't block taps
+                readOnly
               />
               <span className="option-text">{opt}</span>
             </label>
@@ -140,7 +136,6 @@ const progress = questions.length
           </button>
         </div>
 
-        {/* Waves */}
         <div className="waves">
           <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{ height: "100%", width: "100%" }}>
             <path d="M0.00,49.98 C150.00,150.00 350.00,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: "none", fill: "#b88cff" }} />
