@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // ✅ Move Link import here
 import "./Signup.css";
 
 export default function Signup({ onSignup }) {
@@ -96,9 +96,9 @@ export default function Signup({ onSignup }) {
           </svg>
         </div>
 
-        {/* Note text ABOVE waves */}
+        {/* ✅ Correct Link */}
         <p className="note">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </div>
