@@ -22,7 +22,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-    padding-bottom: 44px; /* space for waves */
+    padding-bottom: 76px; /* space for waves */
 }
 
 /* Heading */
@@ -113,10 +113,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 80px;
-  z-index: 1;
+  pointer-events: none; /* waves click block na kare */
 }
-
 .quiz-card .note {
   position: relative;
   z-index: 2;

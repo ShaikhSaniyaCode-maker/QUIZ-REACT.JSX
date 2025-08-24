@@ -153,7 +153,7 @@ export default function Quiz() {
           )}
           <button className="submit-btn" onClick={handleNext}>
             {currentIndex < questions.length - 1
-              ? "Submit & Continue →"
+              ? "Submit →"
               : "Finish Quiz"}
           </button>
         </div>
