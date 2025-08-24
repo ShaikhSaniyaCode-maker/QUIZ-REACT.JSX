@@ -38,7 +38,7 @@ export default function Quiz() {
   if (!currentQuestion) return <div>Loading...</div>;
 
   const handleNext = () => {
-    if (selectedOption === null) {
+    if (!selectedOption) {
       const userName = localStorage.getItem("loggedInUser") || "Guest";
       alert(`${userName}, please attempt this question first!`);
       return;
@@ -50,7 +50,6 @@ export default function Quiz() {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      // Quiz complete
       const endTime = Date.now();
       const timeTakenMinutes = Number(((endTime - startTime) / 60000).toFixed(2));
 
@@ -59,11 +58,12 @@ export default function Quiz() {
 
       questions.forEach((q, index) => {
         if (updatedAnswers[index] === q.answer) score += 2;
-        else wrongQuestions.push({
-          question: q.question,
-          yourAnswer: updatedAnswers[index] || "Not Attempted",
-          correctAnswer: q.answer,
-        });
+        else
+          wrongQuestions.push({
+            question: q.question,
+            yourAnswer: updatedAnswers[index] || "Not Attempted",
+            correctAnswer: q.answer,
+          });
       });
 
       const resultData = {
@@ -89,8 +89,9 @@ export default function Quiz() {
     if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
-  const progress = ((currentIndex + 1) / questions.length) * 100;
-
+const progress = questions.length
+  ? ((currentIndex + 1) / questions.length) * 100
+  : 0;
   return (
     <div className="quiz-container">
       <div className="quiz-card">
@@ -107,7 +108,7 @@ export default function Quiz() {
           {currentIndex + 1}. {currentQuestion.question}
         </h3>
 
-        {/* Mobile-friendly Options */}
+        {/* Mobile-friendly options */}
         <div className="options">
           {currentQuestion.options.map((opt, i) => (
             <label
@@ -118,8 +119,10 @@ export default function Quiz() {
               <input
                 type="radio"
                 name="option"
+                value={opt}
                 checked={selectedOption === opt}
-                onChange={() => setSelectedOption(opt)}
+                onChange={(e) => setSelectedOption(e.target.value)}
+                style={{ pointerEvents: "none" }} // input won't block taps
               />
               <span className="option-text">{opt}</span>
             </label>
