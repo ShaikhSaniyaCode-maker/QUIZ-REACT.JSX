@@ -18,7 +18,6 @@ export default function Quiz() {
   const [answers, setAnswers] = useState({});
   const [startTime, setStartTime] = useState(null);
 
-  // Initialize questions & start time
   useEffect(() => {
     let allQuestions = [];
     if (subject === "physics") allQuestions = physicsHardQuestions;
@@ -31,13 +30,9 @@ export default function Quiz() {
 
   const currentQuestion = questions[currentIndex];
 
-  // Load previously selected option if user navigates back
   useEffect(() => {
-    if (answers[currentIndex] !== undefined) {
-      setSelectedOption(answers[currentIndex]);
-    } else {
-      setSelectedOption(null);
-    }
+    if (answers[currentIndex] !== undefined) setSelectedOption(answers[currentIndex]);
+    else setSelectedOption(null);
   }, [currentIndex, answers]);
 
   if (!currentQuestion) return <div>Loading...</div>;
@@ -57,21 +52,18 @@ export default function Quiz() {
     } else {
       // Quiz complete
       const endTime = Date.now();
-      const timeTakenMinutes = Number(
-        ((endTime - startTime) / 60000).toFixed(2)
-      );
+      const timeTakenMinutes = Number(((endTime - startTime) / 60000).toFixed(2));
 
       let score = 0;
       let wrongQuestions = [];
 
       questions.forEach((q, index) => {
         if (updatedAnswers[index] === q.answer) score += 2;
-        else
-          wrongQuestions.push({
-            question: q.question,
-            yourAnswer: updatedAnswers[index] || "Not Attempted",
-            correctAnswer: q.answer,
-          });
+        else wrongQuestions.push({
+          question: q.question,
+          yourAnswer: updatedAnswers[index] || "Not Attempted",
+          correctAnswer: q.answer,
+        });
       });
 
       const resultData = {
@@ -115,19 +107,22 @@ export default function Quiz() {
           {currentIndex + 1}. {currentQuestion.question}
         </h3>
 
-        {/* Options */}
+        {/* Mobile-friendly Options */}
         <div className="options">
           {currentQuestion.options.map((opt, i) => (
-            <div key={i} className="option-label">
+            <label
+              key={i}
+              className={`option-label ${selectedOption === opt ? "selected" : ""}`}
+              onClick={() => setSelectedOption(opt)}
+            >
               <input
                 type="radio"
-                id={`option-${i}`}
                 name="option"
                 checked={selectedOption === opt}
                 onChange={() => setSelectedOption(opt)}
               />
-              <label htmlFor={`option-${i}`}>{opt}</label>
-            </div>
+              <span className="option-text">{opt}</span>
+            </label>
           ))}
         </div>
 
@@ -138,9 +133,7 @@ export default function Quiz() {
             </button>
           )}
           <button className="submit-btn" onClick={handleNext}>
-            {currentIndex < questions.length - 1
-              ? "Submit & Continue →"
-              : "Finish Quiz"}
+            {currentIndex < questions.length - 1 ? "Submit & Continue →" : "Finish Quiz"}
           </button>
         </div>
 
