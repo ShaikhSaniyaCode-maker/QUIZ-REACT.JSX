@@ -1,28 +1,28 @@
 /* Quiz Container */
 .quiz-container {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f4f0ff;
   font-family: "Poppins", sans-serif;
-  padding: 1rem; /* add padding for small screens */
-  box-sizing: border-box;
+  position: relative;
 }
 
 /* Quiz Card */
 .quiz-card {
   background: white;
-  border-radius: 20px;
-  text-align: center;
-  color: #333;
-  width: 100%;
-  max-width: 450px;
-  max-height: 90vh;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow-y: auto; /* allow scrolling on small screens */
-  padding: 2rem 1.5rem 4rem 1.5rem; /* extra bottom padding for waves */
+ padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: #333;
+    width: 400px;
+    height: 435px;
+    max-width: 90%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 44px; /* space for waves */
 }
 
 /* Heading */
@@ -67,50 +67,34 @@
 .option-label {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  min-height: 50px; /* bigger tap area */
-  border: 1px solid #ccc;
-  border-radius: 12px;
+  gap: 10px;
+  background: #f3eaff;
+  padding: 10px 15px;
+  border-radius: 25px;
   cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
-  font-size: 1rem;
-}
-
-.option-label.selected {
-  background-color: #8a4fff33;
-  border-color: #8a4fff;
-}
-
-.option-label:hover {
-  background: #e0cfff;
+  font-size: 0.95rem;
 }
 
 .option-label input {
-  margin-right: 10px;
-  pointer-events: none; /* ensure taps register on label */
-}
-
-.option-label span.option-text {
-  flex: 1; /* text fills full width */
+  accent-color: #6a11cb;
 }
 
 /* Buttons */
 .navigation-buttons {
   display: flex;
-  flex-direction: column; /* stack buttons on small screens */
+  justify-content: space-between;
   gap: 10px;
   margin-top: 20px;
 }
 
-.navigation-buttons button {
-  width: 100%;
-  padding: 12px 0;
+.prev-btn,
+.submit-btn {
+  padding: 10px 15px;
   border: none;
   border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 1rem;
+  flex: 1;
 }
 
 .prev-btn {
@@ -136,41 +120,12 @@
 .quiz-card .note {
   position: relative;
   z-index: 2;
+  /* margin-top: -40px; */
   font-size: 0.9rem;
-  color: linear-gradient(120deg, #6a11cb, #2575fc);
+  color:linear-gradient(120deg, #6a11cb, #2575fc);
 }
 
-/* Mobile adjustments */
-@media (max-width: 480px) {
-  .quiz-card {
-    padding: 1.5rem 1rem 3rem 1rem;
-    max-height: 85vh;
-  }
-
-  .quiz-card h2 {
-    font-size: 1.3rem;
-  }
-
-  .quiz-card h3 {
-    font-size: 1rem;
-  }
-
-  .option-label {
-    font-size: 0.95rem;
-    padding: 10px 12px;
-  }
-
-  .navigation-buttons {
-    flex-direction: column;
-  }
-
-  .waves svg {
-    height: 60px; /* smaller height for mobile */
-  }
-}
-
-/* Waves SVG */
-.waves svg {
-  width: 100%;
-  height: 80px;
+/* Optional: hover effect for options */
+.option-label:hover {
+  background: #e0cfff;
 }
