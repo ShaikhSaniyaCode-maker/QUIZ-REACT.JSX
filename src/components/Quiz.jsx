@@ -61,38 +61,32 @@ export default function Quiz() {
         ((endTime - startTime) / 60000).toFixed(2)
       );
 
-      // ✅ Score calculation (2 marks per correct answer) + wrong questions
       let score = 0;
       let wrongQuestions = [];
 
       questions.forEach((q, index) => {
-        if (updatedAnswers[index] === q.answer) {
-          score += 2;
-        } else {
+        if (updatedAnswers[index] === q.answer) score += 2;
+        else
           wrongQuestions.push({
             question: q.question,
             yourAnswer: updatedAnswers[index] || "Not Attempted",
             correctAnswer: q.answer,
           });
-        }
       });
 
       const resultData = {
         name: localStorage.getItem("loggedInUser") || "Guest",
         subject,
         score,
-        totalMarks: questions.length * 2, // ✅ total marks instead of totalQuestions
+        totalMarks: questions.length * 2,
         timeTakenMinutes,
         date: new Date().toLocaleDateString("en-GB"),
-        wrongQuestions, // ✅ store wrong questions
+        wrongQuestions,
       };
 
-      // Save last score
       localStorage.setItem("lastScore", score);
 
-      // Update leaderboard
-      const leaderboard =
-        JSON.parse(localStorage.getItem("leaderboard")) || [];
+      const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
       leaderboard.push(resultData);
       localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
       navigate("/leaderboard");
@@ -100,9 +94,7 @@ export default function Quiz() {
   };
 
   const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
 
   const progress = ((currentIndex + 1) / questions.length) * 100;
@@ -110,21 +102,15 @@ export default function Quiz() {
   return (
     <div className="quiz-container">
       <div className="quiz-card">
-        {/* Heading */}
         <h2>
           Question {currentIndex + 1} of {questions.length}
           <p className="note">Best of Luck! 🎯</p>
         </h2>
 
-        {/* Progress Bar */}
         <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${progress}%` }}
-          ></div>
+          <div className="progress-fill" style={{ width: `${progress}%` }}></div>
         </div>
 
-        {/* Question */}
         <h3 className="question-text">
           {currentIndex + 1}. {currentQuestion.question}
         </h3>
@@ -132,19 +118,19 @@ export default function Quiz() {
         {/* Options */}
         <div className="options">
           {currentQuestion.options.map((opt, i) => (
-            <label key={i} className="option-label">
+            <div key={i} className="option-label">
               <input
                 type="radio"
+                id={`option-${i}`}
                 name="option"
                 checked={selectedOption === opt}
                 onChange={() => setSelectedOption(opt)}
               />
-              {opt}
-            </label>
+              <label htmlFor={`option-${i}`}>{opt}</label>
+            </div>
           ))}
         </div>
 
-        {/* Buttons */}
         <div className="navigation-buttons">
           {currentIndex > 0 && (
             <button className="prev-btn" onClick={handlePrevious}>
@@ -158,25 +144,12 @@ export default function Quiz() {
           </button>
         </div>
 
-        {/* Waves at bottom */}
+        {/* Waves */}
         <div className="waves">
-          <svg
-            viewBox="0 0 500 150"
-            preserveAspectRatio="none"
-            style={{ height: "100%", width: "100%" }}
-          >
-            <path
-              d="M0.00,49.98 C150.00,150.00 350.00,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-              style={{ stroke: "none", fill: "#b88cff" }}
-            />
-            <path
-              d="M0.00,79.98 C200.00,150.00 300.00,-30.00 500.00,79.98 L500.00,150.00 L0.00,150.00 Z"
-              style={{ stroke: "none", fill: "#8a4fff" }}
-            />
-            <path
-              d="M0.00,109.98 C250.00,150.00 300.00,-10.00 500.00,109.98 L500.00,150.00 L0.00,150.00 Z"
-              style={{ stroke: "none", fill: "#6c47ff" }}
-            />
+          <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{ height: "100%", width: "100%" }}>
+            <path d="M0.00,49.98 C150.00,150.00 350.00,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: "none", fill: "#b88cff" }} />
+            <path d="M0.00,79.98 C200.00,150.00 300.00,-30.00 500.00,79.98 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: "none", fill: "#8a4fff" }} />
+            <path d="M0.00,109.98 C250.00,150.00 300.00,-10.00 500.00,109.98 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: "none", fill: "#6c47ff" }} />
           </svg>
         </div>
       </div>
